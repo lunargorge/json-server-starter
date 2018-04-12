@@ -1,0 +1,18 @@
+# komendy
+// tylko raz w celu sciągnięcia zależności (w praktyce wtedy gdy niema /node_modules)
+npm install
+// za każdym razem gdy startujemy aplikację
+npm start
+
+# url
+http://localhost:2000
+http://localhost:2000/posts/?_page=1&_limit=5
+
+# doc
+https://github.com/typicode/json-server
+https://github.com/Marak/faker.js
+
+# example
+curl -d '{"postId":55, "desc":"value 55"}' -H "Content-Type: application/json" -X POST http://localhost:2000/posts/55/comments/
+curl -d '{"id":53, "postId": 55, "desc":"value 55x"}' -H "Content-Type: application/json" -X PUT http://localhost:2000/posts/55/comments/53
+curl -d '{"desc":"value 55xyz"}' -H "Content-Type: application/json" -X PATCH http://localhost:2000/posts/55/comments/53

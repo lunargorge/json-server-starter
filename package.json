@@ -1,0 +1,19 @@
+{
+  "name": "api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "db.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon db.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "faker": "^4.1.0",
+    "json-server": "^0.9.5"
+  },
+  "devDependencies": {
+    "nodemon": "^1.11.0"
+  }
+}
