@@ -1,12 +1,7 @@
-# komendy
-// tylko raz w celu sciągnięcia zależności (w praktyce wtedy gdy niema /node_modules)
-npm install
-// za każdym razem gdy startujemy aplikację
-npm start
-
 # url
 http://localhost:2000
 http://localhost:2000/posts/?_page=1&_limit=5
+http://localhost:2000/posts/1/comments/
 
 # doc
 https://github.com/typicode/json-server
