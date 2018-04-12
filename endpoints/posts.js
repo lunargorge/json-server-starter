@@ -2,7 +2,6 @@
 
 var faker = require('faker');
 
-// schemat + wartości predefiniowane
 var data = [
     {
         id: 1,
@@ -14,10 +13,8 @@ var data = [
     }
 ];
 
-// exports.data = data;
 exports.prepare = function () {
 
-    // wartości losowe
     for (var i = 0; i < 50; i++) {
         data.push({
             id: (data.length + 1),
