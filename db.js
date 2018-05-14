@@ -42,8 +42,8 @@ server.get('/summary/:id', routeSummary.getById(db));
 server.use(jsonServer.rewriter({
     "/posts/:postId/comments": "/comments/?postId=:postId",
     "/posts/:postId/comments/:commentId": "/comments/:commentId",
-    "/users:/:userId/posts": "/posts/?userId=:userId",
-    "/users:/:userId/posts/:postId": "/posts/:postId"
+    "/users/:userId/posts": "/posts/?userId=:userId",
+    "/users/:userId/posts/:postId": "/posts/:postId"
 }));
 
 server.use(middlewares);
