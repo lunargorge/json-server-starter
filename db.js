@@ -1,9 +1,15 @@
 'use strict';
 
 // endpoints
-var users = require('./endpoints/users');
-var posts = require('./endpoints/posts');
-var comments = require('./endpoints/comments');
+
+// mock
+var users = require('./endpoints/mock/users');
+var posts = require('./endpoints/mock/posts');
+var comments = require('./endpoints/mock/comments');
+var summary = require('./endpoints/mock/summary');
+
+// custom route
+var routeSummary = require('./endpoints/route/summary');
 
 // prepare data object
 var dataPrepare = function() {
@@ -11,13 +17,14 @@ var dataPrepare = function() {
         posts: posts.prepare(),
         comments: comments.prepare(),
         users: users.prepare(),
+        summary: summary.prepare() // router GET
     };
 };
 
 var jsonServer = require('json-server');
 var server = jsonServer.create();
 var router = jsonServer.router(dataPrepare());
-var middlewares = jsonServer.defaults();
+var middlewares = jsonServer.defaults({noCors: true});
 
 // router.render = function (req, res) {
 //   res.jsonp({
@@ -25,11 +32,20 @@ var middlewares = jsonServer.defaults();
 //   });
 // }
 
+var db = router.db;
+
+// GET: /summary
+// GET: /summary/?userId=1
+server.get('/summary', routeSummary.get(db));
+server.get('/summary/:id', routeSummary.getById(db));
+
 server.use(jsonServer.rewriter({
-  "/posts/:postId/comments": "/comments/?postId=:postId",
-  "/posts/:postId/comments/:commentId": "/comments/:commentId"
+    "/posts/:postId/comments": "/comments/?postId=:postId",
+    "/posts/:postId/comments/:commentId": "/comments/:commentId",
+    "/users:/:userId/posts": "/posts/?userId=:userId",
+    "/users:/:userId/posts/:postId": "/posts/:postId"
 }));
 
-server.use(middlewares)
+server.use(middlewares);
 server.use(router)
-server.listen(2000, function () {})
+server.listen(2000, function () {});
