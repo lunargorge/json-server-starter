@@ -1,3 +1,6 @@
+# NODE: Internal watch failed: ENOSPC: no space left on device
+sudo sysctl fs.inotify.max_user_watches=524288
+
 # url
 http://localhost:2000
 http://localhost:2000/posts/?_page=1&_limit=5
